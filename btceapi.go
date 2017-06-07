@@ -18,8 +18,8 @@ import (
 var ApiUrl string = "https://btc-e.com"
 
 type BtceAPI struct {
-	key    string
-	secret string
+	Key    string
+	Secret string
 }
 
 func (btcApi BtceAPI) GetInfo() (UserInfo, error) {
@@ -157,9 +157,9 @@ func query(btcAPI BtceAPI, method string, params map[string]string, result inter
 
 	bfs := bytes.NewBufferString(dataEncode)
 	req, _ := http.NewRequest("POST", getFullURL("tapi"), bfs)
-	sign := signData([]byte(btcAPI.secret), bfs.Bytes())
+	sign := signData([]byte(btcAPI.Secret), bfs.Bytes())
 
-	req.Header.Set("Key", btcAPI.key)
+	req.Header.Set("Key", btcAPI.Key)
 	req.Header.Set("Sign", sign)
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 
