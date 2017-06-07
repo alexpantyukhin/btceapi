@@ -1,3 +1,4 @@
+// Package btceapi provides the API for the btc-e.com stock exchange.
 package btceapi
 
 import (
@@ -15,7 +16,7 @@ import (
 	"time"
 )
 
-var ApiUrl string = "https://btc-e.com"
+var ApiURL string = "https://btc-e.com"
 
 type BtceAPI struct {
 	Key    string
@@ -79,28 +80,28 @@ func (btcApi BtceAPI) CancelOrder(orderId string) (CancelOrderAnswer, error) {
 	return res, err
 }
 
-func GetDepth(pair string) (Depth, error) {
+func GetDepthV2(pair string) (Depth, error) {
 	url := fmt.Sprintf("api/2/%s/depth", pair)
 	res := Depth{}
 	err := makeGetCall(url, &res)
 	return res, err
 }
 
-func GetTicker(pair string) (Ticker, error) {
+func GetTickerV2(pair string) (Ticker, error) {
 	url := fmt.Sprintf("api/2/%s/ticker", pair)
 	res := Ticker{}
 	err := makeGetCall(url, &res)
 	return res, err
 }
 
-func GetTrades(pair string) (TradeList, error) {
+func GetTradesV2(pair string) (TradeList, error) {
 	url := fmt.Sprintf("api/2/%s/trades", pair)
 	res := TradeList{}
 	err := makeGetCall(url, &res)
 	return res, err
 }
 
-func GetFee(pair string) (Fee, error) {
+func GetFeeV2(pair string) (Fee, error) {
 	url := fmt.Sprintf("api/2/%s/fee", pair)
 	res := Fee{}
 	err := makeGetCall(url, &res)
@@ -196,7 +197,7 @@ func query(btcAPI BtceAPI, method string, params map[string]string, result inter
 }
 
 func getFullURL(url string) string {
-	return fmt.Sprintf("%s/%s", ApiUrl, url)
+	return fmt.Sprintf("%s/%s", ApiURL, url)
 }
 
 func makeGetCall(url string, result interface{}) error {
