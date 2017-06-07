@@ -27,31 +27,31 @@ func (btcApi BtceAPI) GetInfo() (UserInfo, error) {
 	params["method"] = "getInfo"
 
 	res := UserInfo{}
-	err := query(btcApi, params, &res)
+	err := query(btcApi, "getInfo", params, &res)
 
 	return res, err
 }
 
 func (btcApi BtceAPI) GetTransHistory(filterParams FilterParams) (TransHistory, error) {
-	params := getParams("TradeHistory", filterParams)
+	params := getParams(filterParams)
 	res := TransHistory{}
-	err := query(btcApi, params, &res)
+	err := query(btcApi, "TransHistory", params, &res)
 
 	return res, err
 }
 
 func (btcApi BtceAPI) GetTradeHistory(filterParams FilterParams) (TradeHistory, error) {
-	params := getParams("TradeHistory", filterParams)
+	params := getParams(filterParams)
 	res := TradeHistory{}
-	err := query(btcApi, params, &res)
+	err := query(btcApi, "TradeHistory", params, &res)
 
 	return res, err
 }
 
 func (btcApi BtceAPI) GetOrderList(filterParams FilterParams) (OrderList, error) {
-	params := getParams("OrderList", filterParams)
+	params := getParams(filterParams)
 	res := OrderList{}
-	err := query(btcApi, params, &res)
+	err := query(btcApi, "OrderList", params, &res)
 
 	return res, err
 }
@@ -59,25 +59,23 @@ func (btcApi BtceAPI) GetOrderList(filterParams FilterParams) (OrderList, error)
 func (btcApi BtceAPI) Trade(pair string, tradeType string, rate float64, amount float64) (TradeAnswer, error) {
 	params := make(map[string]string)
 
-	params["method"] = "Trade"
 	params["pair"] = pair
 	params["type"] = tradeType
 	params["rate"] = strconv.FormatFloat(rate, 'f', -1, 64)
 	params["amount"] = strconv.FormatFloat(amount, 'f', -1, 64)
 
 	res := TradeAnswer{}
-	err := query(btcApi, params, &res)
+	err := query(btcApi, "Trade", params, &res)
 	return res, err
 }
 
 func (btcApi BtceAPI) CancelOrder(orderId string) (CancelOrderAnswer, error) {
 	params := make(map[string]string)
 
-	params["method"] = "CancelOrder"
 	params["order_id"] = orderId
 
 	res := CancelOrderAnswer{}
-	err := query(btcApi, params, &res)
+	err := query(btcApi, "CancelOrder", params, &res)
 	return res, err
 }
 
@@ -109,9 +107,8 @@ func GetFee(pair string) (Fee, error) {
 	return res, err
 }
 
-func getParams(methodName string, filterParams FilterParams) map[string]string {
+func getParams(filterParams FilterParams) map[string]string {
 	params := make(map[string]string)
-	params["method"] = methodName
 	defaultTime := time.Time{}
 
 	if filterParams.From > 0 {
@@ -146,7 +143,8 @@ func orderName(orderAsc bool) string {
 	return "DESC"
 }
 
-func query(btcAPI BtceAPI, params map[string]string, result interface{}) error {
+func query(btcAPI BtceAPI, method string, params map[string]string, result interface{}) error {
+	params["method"] = method
 	params["nonce"] = strconv.FormatInt(time.Now().Unix(), 10)
 	client := http.Client{Timeout: time.Duration(15 * time.Second)}
 
