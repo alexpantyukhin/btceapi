@@ -75,8 +75,6 @@ type CancelOrderAnswer struct {
 
 type OrderList map[string]Order
 
-//type Depth map[string]DepthPair
-
 type Depth struct {
 	Asks []float64 `json:"asks"`
 	Bids []float64 `json:"bids"`
