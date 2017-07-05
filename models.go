@@ -96,6 +96,21 @@ type TickerItem struct {
 	ServerTime    int64   `json:"server_time"`
 }
 
+type TickerV3  map[string]TickerItemV3
+
+type TickerItemV3 struct {
+	High float64 `json:"high"`
+	Low float64 `json:"low"`
+	Avg float64 `json:"avg"`
+	Volume float64 `json:"vol"`
+	VolCurrent float64 `json:"vol_cur"`
+	Last float64 `json:"last"`
+	Buy float64 `json:"buy"`
+	Sell float64 `json:"sell"`
+	Updated int64 `json:"updated"`
+}
+
+
 type Fee struct {
 	Trade float64 `json:"trade"`
 }
