@@ -1,5 +1,5 @@
-// Package btceapi provides the API for the btc-e.com stock exchange.
-package btceapi
+package main
+
 
 import (
 	"bytes"
@@ -81,30 +81,59 @@ func (btcApi BtceAPI) CancelOrder(orderId string) (CancelOrderAnswer, error) {
 }
 
 func GetDepthV2(pair string) (Depth, error) {
-	url := fmt.Sprintf("api/2/%s/depth", pair)
+	url1 := fmt.Sprintf("api/2/%s/depth", pair)
 	res := Depth{}
-	err := makeGetCall(url, &res)
+	err := makeGetCall(url1, &res)
+	return res, err
+}
+
+func (btcApi BtceAPI) GetDepthV3(pair string) (Depth, error) {
+	url1 := fmt.Sprintf("api/3/depth/%s", pair)
+	res := Depth{}
+	err := makeGetCall(url1, &res)
 	return res, err
 }
 
 func GetTickerV2(pair string) (Ticker, error) {
-	url := fmt.Sprintf("api/2/%s/ticker", pair)
+	url1 := fmt.Sprintf("api/2/%s/ticker", pair)
 	res := Ticker{}
-	err := makeGetCall(url, &res)
+	err := makeGetCall(url1, &res)
+	return res, err
+}
+
+func (btcApi BtceAPI) GetTickerV3(pair string) (TickerV3, error) {
+	//https://btc-e.com/api/3/ticker/eth_eur
+	url1 := fmt.Sprintf("api/3/ticker/%s", pair)
+	res := TickerV3{}
+	err := makeGetCall(url1, &res)
 	return res, err
 }
 
 func GetTradesV2(pair string) (TradeList, error) {
-	url := fmt.Sprintf("api/2/%s/trades", pair)
+	url1 := fmt.Sprintf("api/2/%s/trades", pair)
 	res := TradeList{}
-	err := makeGetCall(url, &res)
+	err := makeGetCall(url1, &res)
+	return res, err
+}
+
+func (btcApi BtceAPI) GetTradesV3(pair string) (TradeList, error) {
+	url1 := fmt.Sprintf("api/3/trades/%s", pair)
+	res := TradeList{}
+	err := makeGetCall(url1, &res)
 	return res, err
 }
 
 func GetFeeV2(pair string) (Fee, error) {
-	url := fmt.Sprintf("api/2/%s/fee", pair)
+	url1 := fmt.Sprintf("api/2/%s/fee", pair)
 	res := Fee{}
-	err := makeGetCall(url, &res)
+	err := makeGetCall(url1, &res)
+	return res, err
+}
+
+func (btcApi BtceAPI) GetFeeV3(pair string) (Fee, error) {
+	url1 := fmt.Sprintf("api/2/fee/%s", pair)
+	res := Fee{}
+	err := makeGetCall(url1, &res)
 	return res, err
 }
 
