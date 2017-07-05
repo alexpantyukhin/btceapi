@@ -89,7 +89,7 @@ func GetDepthV2(pair string) (Depth, error) {
 
 func (btcApi BtceAPI) GetDepthV3(pair string) (Depth, error) {
 	url := fmt.Sprintf("api/3/depth/%s", pair)
-	res := Depth{}
+	res := DepthV3{}
 	err := makeGetCall(url, &res)
 	return res, err
 }
@@ -102,7 +102,6 @@ func GetTickerV2(pair string) (Ticker, error) {
 }
 
 func (btcApi BtceAPI) GetTickerV3(pair string) (TickerV3, error) {
-	//https://btc-e.com/api/3/ticker/eth_eur
 	url := fmt.Sprintf("api/3/ticker/%s", pair)
 	res := TickerV3{}
 	err := makeGetCall(url, &res)
@@ -118,7 +117,7 @@ func GetTradesV2(pair string) (TradeList, error) {
 
 func (btcApi BtceAPI) GetTradesV3(pair string) (TradeList, error) {
 	url := fmt.Sprintf("api/3/trades/%s", pair)
-	res := TradeList{}
+	res := TradeListV3{}
 	err := makeGetCall(url, &res)
 	return res, err
 }
@@ -131,8 +130,8 @@ func GetFeeV2(pair string) (Fee, error) {
 }
 
 func (btcApi BtceAPI) GetFeeV3(pair string) (Fee, error) {
-	url := fmt.Sprintf("api/2/fee/%s", pair)
-	res := Fee{}
+	url := fmt.Sprintf("api/3/fee/%s", pair)
+	res := FeeV3{}
 	err := makeGetCall(url, &res)
 	return res, err
 }
