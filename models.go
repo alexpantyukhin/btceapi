@@ -80,6 +80,14 @@ type Depth struct {
 	Bids []float64 `json:"bids"`
 }
 
+type DepthV3 map[string]DepthValuesV3
+
+type DepthValuesV3 struct {
+	Asks [][]float64 `json:"asks"`
+	Bids [][]float64 `json:"bids"`
+}
+
+
 type Ticker struct {
 	Ticker TickerItem `json:"ticker"`
 }
@@ -114,6 +122,8 @@ type TickerItemV3 struct {
 type Fee struct {
 	Trade float64 `json:"trade"`
 }
+type FeeV3 map[string]float64
+
 
 type TradeList []TradeInfo
 
@@ -126,6 +136,17 @@ type TradeInfo struct {
 	Tid           int32   `json:"tid"`
 	Type          string  `json:"type"`
 }
+
+type TradeListV3 map[string][]TradeInfoV3
+
+type TradeInfoV3 struct {
+	Type string `json:"type"`
+	Price float64 `json:"price"`
+	Amount float64 `json:"amount"`
+	Tid int32 `json:"tid"`
+	Timestamp int64 `json:"timestamp"`
+}
+
 
 type RawResponse struct {
 	Success int             `json:"success"`
