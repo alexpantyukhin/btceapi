@@ -1,5 +1,5 @@
-package main
-
+// Package btceapi provides the API for the btc-e.com stock exchange.
+package btceapi
 
 import (
 	"bytes"
