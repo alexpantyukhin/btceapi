@@ -80,6 +80,14 @@ type Depth struct {
 	Bids []float64 `json:"bids"`
 }
 
+type DepthV3 map[string]DepthValuesV3
+
+type DepthValuesV3 struct {
+	Asks [][]float64 `json:"asks"`
+	Bids [][]float64 `json:"bids"`
+}
+
+
 type Ticker struct {
 	Ticker TickerItem `json:"ticker"`
 }
@@ -96,9 +104,26 @@ type TickerItem struct {
 	ServerTime    int64   `json:"server_time"`
 }
 
+type TickerV3  map[string]TickerItemV3
+
+type TickerItemV3 struct {
+	High float64 `json:"high"`
+	Low float64 `json:"low"`
+	Avg float64 `json:"avg"`
+	Volume float64 `json:"vol"`
+	VolCurrent float64 `json:"vol_cur"`
+	Last float64 `json:"last"`
+	Buy float64 `json:"buy"`
+	Sell float64 `json:"sell"`
+	Updated int64 `json:"updated"`
+}
+
+
 type Fee struct {
 	Trade float64 `json:"trade"`
 }
+type FeeV3 map[string]float64
+
 
 type TradeList []TradeInfo
 
@@ -111,6 +136,17 @@ type TradeInfo struct {
 	Tid           int32   `json:"tid"`
 	Type          string  `json:"type"`
 }
+
+type TradeListV3 map[string][]TradeInfoV3
+
+type TradeInfoV3 struct {
+	Type string `json:"type"`
+	Price float64 `json:"price"`
+	Amount float64 `json:"amount"`
+	Tid int32 `json:"tid"`
+	Timestamp int64 `json:"timestamp"`
+}
+
 
 type RawResponse struct {
 	Success int             `json:"success"`
