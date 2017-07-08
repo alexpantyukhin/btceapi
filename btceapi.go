@@ -87,7 +87,9 @@ func GetDepthV2(pair string) (Depth, error) {
 	return res, err
 }
 
+
 func GetDepthV3(pair string) (Depth, error) {
+
 	url := fmt.Sprintf("api/3/depth/%s", pair)
 	res := DepthV3{}
 	err := makeGetCall(url, &res)
