@@ -9,9 +9,6 @@ If you like the library please donate some coins on follow addresses:
     Zcash: t1S7MREH6zSGQQ9Htr2jrtyvDUKnPFLJeor 
     LTC: LfLDPm4rAfE5rrbjXn5NFjsx4HdXq8rV3K
 
-## In progress
- - Working with V3 version of btc-e.com
-
 ## Examples
 
 ```go
