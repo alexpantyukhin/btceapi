@@ -155,10 +155,10 @@ func getParams(filterParams FilterParams) map[string]string {
 	params["order"] = orderName(filterParams.OrderAsc)
 
 	if filterParams.Since != defaultTime {
-		params["since"] = string(filterParams.Since.Unix())
+		params["since"] = strconv.FormatInt(filterParams.Since.Unix(), 10)
 	}
 	if filterParams.End != defaultTime {
-		params["end"] = string(filterParams.End.Unix())
+		params["end"] = strconv.FormatInt(filterParams.End.Unix(), 10)
 	}
 
 	return params
@@ -200,9 +200,9 @@ func query(btcAPI BtceAPI, method string, params map[string]string, result inter
 
 	defer resp.Body.Close()
 
-	bodyBytes, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return err
+	bodyBytes, errBody := ioutil.ReadAll(resp.Body)
+	if errBody != nil {
+		return errBody
 	}
 
 	respData := RawResponse{}
