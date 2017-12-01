@@ -16,7 +16,7 @@ import (
 	"time"
 )
 
-var ApiURL string = "https://btc-e.com"
+var ApiURL string = "https://wex.nz"
 
 type BtceAPI struct {
 	Key    string
