@@ -52,7 +52,7 @@ func (btcApi BtceAPI) GetTradeHistory(filterParams FilterParams) (TradeHistory, 
 func (btcApi BtceAPI) GetOrderList(filterParams FilterParams) (OrderList, error) {
 	params := getParams(filterParams)
 	res := OrderList{}
-	err := query(btcApi, "OrderList", params, &res)
+	err := query(btcApi, "ActiveOrders", params, &res)
 
 	return res, err
 }
