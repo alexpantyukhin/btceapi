@@ -21,11 +21,11 @@ type FilterParams struct {
 }
 
 type UserInfo struct {
-	Funds            map[string]float64 `json:"funds"`
-	Rights           Rights             `json:"rights"`
-	TransactionCount int64              `json:"transaction_count"`
-	OpenOrders       int64              `json:"open_orders"`
-	ServerTime       float64            `json:"server_time"`
+	Funds            Funds   `json:"funds"`
+	Rights           Rights  `json:"rights"`
+	TransactionCount int64   `json:"transaction_count"`
+	OpenOrders       int64   `json:"open_orders"`
+	ServerTime       float64 `json:"server_time"`
 }
 
 type Transaction struct {
@@ -38,6 +38,7 @@ type Transaction struct {
 }
 
 type TransHistory map[string]Transaction
+type Funds map[string]float64
 
 type Trade struct {
 	Pair        string  `json:"pair"`
@@ -61,16 +62,26 @@ type Order struct {
 	Status           int     `json:"status"`
 }
 
+type CoinDepositAddressAnswer struct {
+	Address string `json:"address"`
+}
+
+type WithdrawCoinAnswer struct {
+	TransactionId string  `json:"tId"`
+	AmountSent    float64 `json:"amountSent"`
+	Funds         Funds   `json:"funds"`
+}
+
 type TradeAnswer struct {
-	Received float64            `json:"received"`
-	Remains  float64            `json:"remains"`
-	OrderID  int                `json:"order_id"`
-	Funds    map[string]float64 `json:"funds"`
+	Received float64 `json:"received"`
+	Remains  float64 `json:"remains"`
+	OrderID  int     `json:"order_id"`
+	Funds    Funds   `json:"funds"`
 }
 
 type CancelOrderAnswer struct {
-	OrderID int                `json:"order_id"`
-	Funds   map[string]float64 `json:"funds"`
+	OrderID int   `json:"order_id"`
+	Funds   Funds `json:"funds"`
 }
 
 type OrderList map[string]Order
@@ -86,7 +97,6 @@ type DepthValuesV3 struct {
 	Asks [][]float64 `json:"asks"`
 	Bids [][]float64 `json:"bids"`
 }
-
 
 type Ticker struct {
 	Ticker TickerItem `json:"ticker"`
@@ -104,26 +114,24 @@ type TickerItem struct {
 	ServerTime    int64   `json:"server_time"`
 }
 
-type TickerV3  map[string]TickerItemV3
+type TickerV3 map[string]TickerItemV3
 
 type TickerItemV3 struct {
-	High float64 `json:"high"`
-	Low float64 `json:"low"`
-	Avg float64 `json:"avg"`
-	Volume float64 `json:"vol"`
+	High       float64 `json:"high"`
+	Low        float64 `json:"low"`
+	Avg        float64 `json:"avg"`
+	Volume     float64 `json:"vol"`
 	VolCurrent float64 `json:"vol_cur"`
-	Last float64 `json:"last"`
-	Buy float64 `json:"buy"`
-	Sell float64 `json:"sell"`
-	Updated int64 `json:"updated"`
+	Last       float64 `json:"last"`
+	Buy        float64 `json:"buy"`
+	Sell       float64 `json:"sell"`
+	Updated    int64   `json:"updated"`
 }
-
 
 type Fee struct {
 	Trade float64 `json:"trade"`
 }
 type FeeV3 map[string]float64
-
 
 type TradeList []TradeInfo
 
@@ -140,13 +148,12 @@ type TradeInfo struct {
 type TradeListV3 map[string][]TradeInfoV3
 
 type TradeInfoV3 struct {
-	Type string `json:"type"`
-	Price float64 `json:"price"`
-	Amount float64 `json:"amount"`
-	Tid int32 `json:"tid"`
-	Timestamp int64 `json:"timestamp"`
+	Type      string  `json:"type"`
+	Price     float64 `json:"price"`
+	Amount    float64 `json:"amount"`
+	Tid       int32   `json:"tid"`
+	Timestamp int64   `json:"timestamp"`
 }
-
 
 type RawResponse struct {
 	Success int             `json:"success"`

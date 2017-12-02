@@ -57,6 +57,28 @@ func (btcApi BtceAPI) GetOrderList(filterParams FilterParams) (OrderList, error)
 	return res, err
 }
 
+func (btcApi BtceAPI) CoinDepositAddress(coinName string) (CoinDepositAddressAnswer, error) {
+	params := make(map[string]string)
+	params["coinName"] = coinName
+
+	res := CoinDepositAddressAnswer{}
+	err := query(btcApi, "CoinDepositAddress", params, &res)
+
+	return res, err
+}
+
+func (btcApi BtceAPI) WithdrawCoin(coinName string, amount float64, address string) (WithdrawCoinAnswer, error) {
+	params := make(map[string]string)
+	params["coinName"] = coinName
+	params["amount"] = strconv.FormatFloat(amount, 'f', -1, 64)
+	params["address"] = address
+
+	res := WithdrawCoinAnswer{}
+	err := query(btcApi, "WithdrawCoin", params, &res)
+
+	return res, err
+}
+
 func (btcApi BtceAPI) Trade(pair string, tradeType string, rate float64, amount float64) (TradeAnswer, error) {
 	params := make(map[string]string)
 

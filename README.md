@@ -18,10 +18,10 @@ If you like the library please donate some coins on follow addresses:
     key := "Key"
     secret := "Secret"
 
-    btceAPI := btceapi.BtceAPI{Key: key, Secret: secret}
-    res, err := btceApi.GetInfo()
+	btceAPI := btceapi.BtceAPI{Key: key, Secret: secret}
+	res, err := btceAPI.GetInfo()
 
-    if err != nil {
-        fmt.Println(res.Rights.Info)
-    }
+	if err == nil {
+		fmt.Println(res.Rights.Info)
+	}
 ```
