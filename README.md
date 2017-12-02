@@ -1,6 +1,6 @@
-## Golang API of btc-e.com exchange
+## Golang API of WEXnz exchange
 
-It is the simple library wrapper for btc-e.com. 
+It is the simple library wrapper for WEXnz. 
 
 ## Donate
 If you like the library please donate some coins on follow addresses:
@@ -12,9 +12,6 @@ If you like the library please donate some coins on follow addresses:
 ## Examples
 
 ```go
-    // You can change the target url here. For example:
-    btceapi.ApiURL = "https://btc-e.nz"	
-    
     key := "Key"
     secret := "Secret"
 
