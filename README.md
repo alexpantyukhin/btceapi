@@ -5,7 +5,6 @@ It is the simple library wrapper for WEXnz.
 ## Donate
 If you like the library please donate some coins on follow addresses:
 
-    ETH: 0xd6ed497f6a034cd28762df9df3cd2c5b5d69ce6b
     Zcash: t1S7MREH6zSGQQ9Htr2jrtyvDUKnPFLJeor 
     LTC: LfLDPm4rAfE5rrbjXn5NFjsx4HdXq8rV3K
 
